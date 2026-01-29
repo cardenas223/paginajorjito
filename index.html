@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JANU - Gana el auto de tus sueños con nuestros sorteos y rifas. Participa ahora y conviértete en el próximo ganador.">
+    <title>JANU - Sorteos y Rifas | Gana el Auto de Tus Sueños</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="nav">
+                <div class="logo">
+                    <span class="logo-text">JANU</span>
+                </div>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                    <li><a href="#sorteos" class="nav-link">Sorteos</a></li>
+                    <li><a href="#ganadores" class="nav-link">Ganadores</a></li>
+                    <li><a href="#como-participar" class="nav-link">Cómo Participar</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                </ul>
+                
+                <button class="btn btn-primary cta-btn">Comprar Boletos</button>
+                
+                <button class="hamburger" id="hamburger" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">¡Gana el Auto de Tus Sueños!</h1>
+            <p class="hero-subtitle">Próximo sorteo en vivo - No te lo pierdas</p>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="days">00</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="hours">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="minutes">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="seconds">00</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+            
+            <button class="btn btn-large btn-cta">Participar Ahora</button>
+        </div>
+    </section>
+
+    <!-- Sorteos Activos Section -->
+    <section class="sorteos" id="sorteos">
+        <div class="container">
+            <h2 class="section-title">Sorteos Activos</h2>
+            <p class="section-subtitle">Elige tu sorteo favorito y participa ahora</p>
+            
+            <div class="sorteos-grid">
+                <!-- Sorteo Card 1 -->
+                <div class="sorteo-card">
+                    <div class="sorteo-image">
+                        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&q=80" alt="BMW Serie 3">
+                        <span class="sorteo-badge">¡Últimos boletos!</span>
+                    </div>
+                    <div class="sorteo-content">
+                        <h3 class="sorteo-title">BMW Serie 3 2024</h3>
+                        <p class="sorteo-description">Increíble BMW en perfectas condiciones</p>
+                        <div class="sorteo-price">
+                            <span class="price-amount">$50</span>
+                            <span class="price-label">por boleto</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%;"></div>
+                            </div>
+                            <p class="progress-text">750/1000 boletos vendidos</p>
+                        </div>
+                        <button class="btn btn-secondary">Ver Detalles</button>
+                    </div>
+                </div>
+
+                <!-- Sorteo Card 2 -->
+                <div class="sorteo-card">
+                    <div class="sorteo-image">
+                        <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500&q=80" alt="Mercedes-Benz Clase C">
+                        <span class="sorteo-badge badge-hot">¡Hot!</span>
+                    </div>
+                    <div class="sorteo-content">
+                        <h3 class="sorteo-title">Mercedes-Benz Clase C</h3>
+                        <p class="sorteo-description">Elegancia y potencia en un solo auto</p>
+                        <div class="sorteo-price">
+                            <span class="price-amount">$45</span>
+                            <span class="price-label">por boleto</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%;"></div>
+                            </div>
+                            <p class="progress-text">450/1000 boletos vendidos</p>
+                        </div>
+                        <button class="btn btn-secondary">Ver Detalles</button>
+                    </div>
+                </div>
+
+                <!-- Sorteo Card 3 -->
+                <div class="sorteo-card">
+                    <div class="sorteo-image">
+                        <img src="https://images.unsplash.com/photo-1580414057403-c3f8f322c239?w=500&q=80" alt="Audi A4">
+                        <span class="sorteo-badge badge-new">Nuevo</span>
+                    </div>
+                    <div class="sorteo-content">
+                        <h3 class="sorteo-title">Audi A4 Premium</h3>
+                        <p class="sorteo-description">Tecnología y confort de alta gama</p>
+                        <div class="sorteo-price">
+                            <span class="price-amount">$40</span>
+                            <span class="price-label">por boleto</span>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%;"></div>
+                            </div>
+                            <p class="progress-text">200/1000 boletos vendidos</p>
+                        </div>
+                        <button class="btn btn-secondary">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo Participar Section -->
+    <section class="como-participar" id="como-participar">
+        <div class="container">
+            <h2 class="section-title">¿Cómo Participar?</h2>
+            <p class="section-subtitle">Es muy fácil, solo sigue estos pasos</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Elige tu Sorteo</h3>
+                    <p class="step-description">Selecciona el auto de tus sueños entre nuestros sorteos disponibles</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Compra tus Boletos</h3>
+                    <p class="step-description">Adquiere uno o más boletos para aumentar tus probabilidades de ganar</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Espera el Sorteo en Vivo</h3>
+                    <p class="step-description">Participa en nuestro sorteo en vivo y transparente por redes sociales</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">¡Gana Increíbles Premios!</h3>
+                    <p class="step-description">Recibe tu premio y comienza a disfrutar de tu nuevo auto</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ganadores Section -->
+    <section class="ganadores" id="ganadores">
+        <div class="container">
+            <h2 class="section-title">Nuestros Ganadores</h2>
+            <p class="section-subtitle">Conoce a las personas que ya cumplieron su sueño con JANU</p>
+            
+            <div class="ganadores-grid">
+                <div class="ganador-card">
+                    <div class="ganador-image">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Ganador 1">
+                    </div>
+                    <div class="ganador-content">
+                        <h3 class="ganador-name">Carlos Mendoza</h3>
+                        <p class="ganador-premio">Ganador BMW Serie 3</p>
+                        <div class="ganador-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="ganador-testimonio">"¡Increíble experiencia! No podía creer que había ganado. Todo fue transparente y profesional."</p>
+                    </div>
+                </div>
+
+                <div class="ganador-card">
+                    <div class="ganador-image">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80" alt="Ganador 2">
+                    </div>
+                    <div class="ganador-content">
+                        <h3 class="ganador-name">María González</h3>
+                        <p class="ganador-premio">Ganadora Mercedes-Benz</p>
+                        <div class="ganador-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="ganador-testimonio">"Gracias JANU por hacer realidad mi sueño. El proceso fue muy fácil y confiable."</p>
+                    </div>
+                </div>
+
+                <div class="ganador-card">
+                    <div class="ganador-image">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80" alt="Ganador 3">
+                    </div>
+                    <div class="ganador-content">
+                        <h3 class="ganador-name">Jorge Ramírez</h3>
+                        <p class="ganador-premio">Ganador Audi A4</p>
+                        <div class="ganador-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="ganador-testimonio">"Sorteados completamente justos. Recomiendo JANU al 100%. ¡Ya tengo mi auto nuevo!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Resolvemos tus dudas</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Cómo sé si gané?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Te contactaremos inmediatamente después del sorteo a través del teléfono y correo electrónico que proporcionaste al comprar tu boleto. Además, publicaremos los resultados en nuestras redes sociales y en esta página web.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Cómo recibo mi premio?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Una vez confirmado como ganador, coordinaremos una cita para la entrega del auto. Todos los trámites de transferencia de propiedad corren por nuestra cuenta. Solo necesitas presentar tu identificación oficial.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Los sorteos son legales y transparentes?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, todos nuestros sorteos son completamente legales y transparentes. Realizamos los sorteos en vivo a través de nuestras redes sociales para que todos puedan verificar el proceso. Cumplimos con todas las regulaciones vigentes.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Puedo comprar múltiples boletos?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>¡Por supuesto! Puedes comprar tantos boletos como desees. Entre más boletos compres, mayores serán tus probabilidades de ganar. Ofrecemos descuentos especiales por la compra de paquetes de boletos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Qué métodos de pago aceptan?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Aceptamos todas las tarjetas de crédito y débito principales, transferencias bancarias, y pagos en efectivo en puntos de venta autorizados. Tu información de pago está protegida con encriptación de nivel bancario.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Puedo participar desde cualquier lugar?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, puedes participar desde cualquier parte del país. Solo necesitas ser mayor de 18 años y tener una identificación oficial válida. El premio será entregado en tu ciudad o coordinaremos el envío.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <span class="logo-text">JANU</span>
+                    </div>
+                    <p class="footer-description">Hacemos realidad tus sueños con sorteos transparentes y emocionantes. Tu próximo auto está a un boleto de distancia.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sorteos">Sorteos</a></li>
+                        <li><a href="#ganadores">Ganadores</a></li>
+                        <li><a href="#como-participar">Cómo Participar</a></li>
+                        <li><a href="#faq">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Información</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Aviso Legal</a></li>
+                        <li><a href="#">Sorteos Anteriores</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3 class="footer-title">Contacto</h3>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-phone"></i> +52 123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@janu.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Ciudad de México, México</li>
+                        <li><i class="fas fa-clock"></i> Lun-Vie: 9:00-18:00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 JANU - Todos los derechos reservados. | Diseñado con <i class="fas fa-heart"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
