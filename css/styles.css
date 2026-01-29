@@ -186,8 +186,8 @@ ul {
     font-size: 2.5rem;
     background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     letter-spacing: 3px;
 }
 
@@ -248,7 +248,6 @@ ul {
     position: relative;
     background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(26, 26, 26, 0.9)),
                 url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1920&q=80') center/cover;
-    background-attachment: fixed;
     overflow: hidden;
 }
 
@@ -275,8 +274,8 @@ ul {
     margin-bottom: var(--spacing-md);
     background: linear-gradient(135deg, var(--primary-gold), var(--accent-gold), var(--white));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     text-transform: uppercase;
     letter-spacing: 3px;
 }

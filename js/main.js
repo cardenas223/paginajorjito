@@ -6,22 +6,33 @@ const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 
 // Toggle mobile menu
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        
+        // Update ARIA attribute for accessibility
+        const isExpanded = navMenu.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', isExpanded);
+    });
+}
 
 // Close mobile menu when clicking on a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+        if (hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
     });
 });
 
 // ===========================
 // Countdown Timer
 // ===========================
+let countdownInterval;
+
 function updateCountdown() {
     // Set the target date (30 days from now)
     const targetDate = new Date();
@@ -31,27 +42,37 @@ function updateCountdown() {
     const now = new Date().getTime();
     const difference = targetDate - now;
 
+    // If countdown is finished, clear interval and show message
+    if (difference < 0) {
+        clearInterval(countdownInterval);
+        const countdownElement = document.getElementById('countdown');
+        if (countdownElement) {
+            countdownElement.innerHTML = '<p class="countdown-finished">¡El sorteo ha comenzado!</p>';
+        }
+        return;
+    }
+
     // Calculate time units
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-    // Update the DOM
-    document.getElementById('days').textContent = String(days).padStart(2, '0');
-    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-
-    // If countdown is finished
-    if (difference < 0) {
-        document.getElementById('countdown').innerHTML = '<p class="countdown-finished">¡El sorteo ha comenzado!</p>';
-    }
+    // Update the DOM with null checks
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+    
+    if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+    if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+    if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+    if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
 }
 
 // Update countdown every second
 updateCountdown();
-setInterval(updateCountdown, 1000);
+countdownInterval = setInterval(updateCountdown, 1000);
 
 // ===========================
 // FAQ Accordion
@@ -61,17 +82,27 @@ const faqItems = document.querySelectorAll('.faq-item');
 faqItems.forEach(item => {
     const question = item.querySelector('.faq-question');
     
-    question.addEventListener('click', () => {
-        // Close other items
-        faqItems.forEach(otherItem => {
-            if (otherItem !== item && otherItem.classList.contains('active')) {
-                otherItem.classList.remove('active');
-            }
-        });
+    if (question) {
+        // Set initial ARIA attribute
+        question.setAttribute('aria-expanded', 'false');
         
-        // Toggle current item
-        item.classList.toggle('active');
-    });
+        question.addEventListener('click', () => {
+            // Close other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                    const otherQuestion = otherItem.querySelector('.faq-question');
+                    if (otherQuestion) {
+                        otherQuestion.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            });
+            
+            // Toggle current item
+            const isActive = item.classList.toggle('active');
+            question.setAttribute('aria-expanded', isActive);
+        });
+    }
 });
 
 // ===========================
@@ -103,36 +134,57 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Header Background on Scroll
 // ===========================
 const header = document.getElementById('header');
+let lastScrollTime = 0;
+const scrollThrottle = 100; // milliseconds
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(10, 10, 10, 0.98)';
-        header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
-    } else {
-        header.style.background = 'rgba(10, 10, 10, 0.95)';
-        header.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.2)';
+function handleHeaderScroll() {
+    const now = Date.now();
+    if (now - lastScrollTime < scrollThrottle) return;
+    lastScrollTime = now;
+    
+    if (header) {
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(10, 10, 10, 0.98)';
+            header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+        } else {
+            header.style.background = 'rgba(10, 10, 10, 0.95)';
+            header.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.2)';
+        }
     }
-});
+}
+
+window.addEventListener('scroll', handleHeaderScroll);
 
 // ===========================
 // Scroll to Top Button
 // ===========================
 const scrollTopBtn = document.getElementById('scrollTop');
+let lastScrollTopTime = 0;
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        scrollTopBtn.classList.add('visible');
-    } else {
-        scrollTopBtn.classList.remove('visible');
+function handleScrollTopVisibility() {
+    const now = Date.now();
+    if (now - lastScrollTopTime < scrollThrottle) return;
+    lastScrollTopTime = now;
+    
+    if (scrollTopBtn) {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
     }
-});
+}
 
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+window.addEventListener('scroll', handleScrollTopVisibility);
+
+if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
-});
+}
 
 // ===========================
 // Scroll Animations
@@ -189,30 +241,16 @@ ctaButtons.forEach(button => {
         // Prevent default for demonstration
         e.preventDefault();
         
-        // Show alert (in production, this would redirect to purchase page)
-        alert('¡Gracias por tu interés! En producción, esto te llevaría a la página de compra de boletos.');
-        
-        // You can add your custom logic here, such as:
-        // - Redirect to a payment page
-        // - Open a modal with ticket selection
-        // - Start a checkout process
+        // In production, this would redirect to purchase page or open a modal
+        console.log('CTA button clicked - would redirect to purchase page');
     });
 });
 
 // ===========================
 // Card Hover Effects Enhancement
 // ===========================
-const cards = document.querySelectorAll('.sorteo-card, .ganador-card, .step-card');
-
-cards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-    });
-});
+// Hover effects are handled by CSS for better performance
+// See css/styles.css lines 347-351 and 544-548
 
 // ===========================
 // Dynamic Year in Footer
@@ -220,19 +258,16 @@ cards.forEach(card => {
 const currentYear = new Date().getFullYear();
 const footerText = document.querySelector('.footer-bottom p');
 if (footerText) {
-    footerText.innerHTML = footerText.innerHTML.replace('2026', currentYear);
+    // Use a more reliable method with data attribute or specific replacement
+    const yearSpan = document.createElement('span');
+    yearSpan.setAttribute('data-year', 'current');
+    footerText.innerHTML = `&copy; ${currentYear} JANU - Todos los derechos reservados. | Diseñado con <i class="fas fa-heart"></i>`;
 }
 
 // ===========================
 // Loading Animation (Optional)
 // ===========================
-window.addEventListener('load', () => {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 100);
-});
+// Removed fade-in effect to avoid flash and respect user preferences for reduced motion
 
 // ===========================
 // Prevent Default on Hash Links
@@ -256,8 +291,11 @@ console.log('%c🎰 Visita nuestra página para más información', 'color: #FDB
 // ===========================
 if ('performance' in window) {
     window.addEventListener('load', () => {
-        const perfData = window.performance.timing;
-        const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-        console.log(`⚡ Página cargada en ${pageLoadTime}ms`);
+        // Use modern Performance Timeline API
+        const perfData = performance.getEntriesByType('navigation')[0];
+        if (perfData) {
+            const pageLoadTime = perfData.loadEventEnd - perfData.fetchStart;
+            console.log(`⚡ Página cargada en ${Math.round(pageLoadTime)}ms`);
+        }
     });
 }
